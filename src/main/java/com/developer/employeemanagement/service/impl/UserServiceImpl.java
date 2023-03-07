@@ -12,8 +12,13 @@ import com.developer.employeemanagement.entity.UserEntity;
 import com.developer.employeemanagement.repository.UserRepository;
 import com.developer.employeemanagement.service.EmployeeService;
 import com.developer.employeemanagement.service.UserService;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +44,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity saveUser(UserEntity userEntity) {
         return userRepository.save(userEntity);
+    }
+    @Override
+    public void saveUser(MultipartFile profilePicture, String username, String firstName, String lastName, String password
+            , String role, String email) throws IOException {
+        UserEntity user = new UserEntity();
+        user.setEmail(email);
+        user.setUsername(username);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setPassword(password);
+        user.setRole(role);
+        user.setProfilePicture(profilePicture.getBytes());
+        userRepository.save(user);
     }
 
     @Override
