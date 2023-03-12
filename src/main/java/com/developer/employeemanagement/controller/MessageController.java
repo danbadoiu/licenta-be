@@ -25,19 +25,16 @@ public class MessageController {
 
     private final MessageService messageService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public List<MessageEntity> findAllMessage() {
         return messageService.findAllMessage();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public Optional<MessageEntity> findMessageById(@PathVariable("id") Long id) {
         return messageService.findById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public MessageEntity saveMessage(@RequestBody MessageEntity messageEntity) {
         return messageService.saveMessage(messageEntity);
@@ -48,13 +45,11 @@ public class MessageController {
 //        this.messageService.saveMessage(profilePicture, username, firstName, lastName, password, role, email);
 //    }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public MessageEntity updateMessage(@RequestBody MessageEntity userEntity) {
         return messageService.updateMessage(userEntity);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/{id}")
     public void deleteMessage(@PathVariable("id") Long id) {
         messageService.deleteMessage(id);
@@ -62,13 +57,11 @@ public class MessageController {
 
 //    Using Request and Response with save and update employee
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/res")
     public MessageResponse saveMessageResponse(@RequestBody MessageRequest messageRequest) {
         return messageService.saveMessage(messageRequest);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/res/{id}")
     public MessageResponse updateMessageResponse(@RequestBody MessageRequest messageRequest, @PathVariable("id") Long id) {
         return messageService.updateMessage(messageRequest, id);
