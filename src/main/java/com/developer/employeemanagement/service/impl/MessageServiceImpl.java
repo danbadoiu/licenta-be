@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,19 +52,17 @@ public class MessageServiceImpl implements MessageService {
     public MessageEntity saveMessage(MessageEntity messageEntity) {
         return messageRepository.save(messageEntity);
     }
-//    @Override
-//    public void saveMessage(MultipartFile profilePicture, String username, String firstName, String lastName, String password
-//            , String role, String email) throws IOException {
-////        UserEntity user = new UserEntity();
-////        user.setEmail(email);
-////        user.setUsername(username);
-////        user.setFirstName(firstName);
-////        user.setLastName(lastName);
-////        user.setPassword(password);
-////        user.setRole(role);
-////        user.setProfilePicture(profilePicture.getBytes());
-//        messageRepository.save(user);
-//    }
+
+    @Override
+    public void saveMessage(MultipartFile picture, String message, Date date, Long idReceiver, Long idSender) throws IOException {
+        MessageEntity messageEntity = new MessageEntity();
+        messageEntity.setMessage(message);
+        messageEntity.setDate(date);
+        messageEntity.setIdReceiver(idReceiver);
+        messageEntity.setIdSender(idSender);
+        messageEntity.setPicture(picture.getBytes());
+        messageRepository.save(messageEntity);
+    }
 
     @Override
     public MessageEntity updateMessage(MessageEntity messageEntity) {

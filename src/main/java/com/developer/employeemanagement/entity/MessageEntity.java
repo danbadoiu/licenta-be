@@ -31,6 +31,10 @@ public class MessageEntity {
     @Column(name = "message")
     private String message;
 
+    @Column(name = "picture")
+    @Lob
+    private byte[] picture;
+
     @Column(name = "date")
     private Date date;
 

@@ -14,6 +14,7 @@ public class MessageRequest implements Serializable {
     private long idSender;
     private long idReceiver;
     private String message;
+    private String picture;
     private Date date;
 
 

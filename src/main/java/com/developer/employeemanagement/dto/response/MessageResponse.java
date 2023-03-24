@@ -16,7 +16,7 @@ public class MessageResponse implements Serializable {
     private String email;
     private String role;
     private String password;
-    private String profilePicture;
+    private String picture;
 
 
 

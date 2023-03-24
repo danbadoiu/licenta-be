@@ -1,12 +1,15 @@
 package com.developer.employeemanagement.controller;
 
 
+import com.developer.employeemanagement.auth.AuthResponse;
 import com.developer.employeemanagement.dto.request.MessageRequest;
 import com.developer.employeemanagement.dto.request.UserRequest;
 import com.developer.employeemanagement.dto.response.MessageResponse;
 import com.developer.employeemanagement.dto.response.UserResponse;
 import com.developer.employeemanagement.entity.MessageEntity;
 import com.developer.employeemanagement.entity.UserEntity;
+import com.developer.employeemanagement.repository.MessageRepository;
+import com.developer.employeemanagement.repository.UserRepository;
 import com.developer.employeemanagement.service.MessageService;
 import com.developer.employeemanagement.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +28,7 @@ import java.util.Optional;
 public class MessageController {
 
     private final MessageService messageService;
+    private final MessageRepository messageRepository;
 
     @GetMapping
     public List<MessageEntity> findAllMessage() {
@@ -44,7 +49,6 @@ public class MessageController {
 //    ) throws IOException {
 //        this.messageService.saveMessage(profilePicture, username, firstName, lastName, password, role, email);
 //    }
-
     @PutMapping
     public MessageEntity updateMessage(@RequestBody MessageEntity userEntity) {
         return messageService.updateMessage(userEntity);
@@ -66,5 +70,7 @@ public class MessageController {
     public MessageResponse updateMessageResponse(@RequestBody MessageRequest messageRequest, @PathVariable("id") Long id) {
         return messageService.updateMessage(messageRequest, id);
     }
+
+
 
 }
