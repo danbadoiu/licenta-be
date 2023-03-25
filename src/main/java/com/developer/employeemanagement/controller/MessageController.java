@@ -1,22 +1,20 @@
 package com.developer.employeemanagement.controller;
 
 
-import com.developer.employeemanagement.auth.AuthResponse;
 import com.developer.employeemanagement.dto.request.MessageRequest;
-import com.developer.employeemanagement.dto.request.UserRequest;
 import com.developer.employeemanagement.dto.response.MessageResponse;
-import com.developer.employeemanagement.dto.response.UserResponse;
 import com.developer.employeemanagement.entity.MessageEntity;
-import com.developer.employeemanagement.entity.UserEntity;
 import com.developer.employeemanagement.repository.MessageRepository;
-import com.developer.employeemanagement.repository.UserRepository;
 import com.developer.employeemanagement.service.MessageService;
-import com.developer.employeemanagement.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -41,14 +39,17 @@ public class MessageController {
     }
 
     @PostMapping
-    public MessageEntity saveMessage(@RequestBody MessageEntity messageEntity) {
-        return messageService.saveMessage(messageEntity);
-    }
-//    public void saveMessage(
-//            MultipartFile profilePicture, String username, String firstName, String lastName, String password, String role, String email
-//    ) throws IOException {
-//        this.messageService.saveMessage(profilePicture, username, firstName, lastName, password, role, email);
+//    public MessageEntity saveMessage(@RequestBody MessageEntity messageEntity) {
+//        return messageService.saveMessage(messageEntity);
 //    }
+    public void saveMessage(
+            MultipartFile picture, String message, String date, Long idSender, Long idReceiver
+    ) throws IOException, ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+
+        this.messageService.saveMessage(picture, message, dateTime, idSender, idReceiver);
+    }
     @PutMapping
     public MessageEntity updateMessage(@RequestBody MessageEntity userEntity) {
         return messageService.updateMessage(userEntity);

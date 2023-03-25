@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +55,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void saveMessage(MultipartFile picture, String message, Date date, Long idReceiver, Long idSender) throws IOException {
+    public void saveMessage(MultipartFile picture, String message, LocalDateTime date, Long idReceiver, Long idSender) throws IOException {
         MessageEntity messageEntity = new MessageEntity();
         messageEntity.setMessage(message);
         messageEntity.setDate(date);

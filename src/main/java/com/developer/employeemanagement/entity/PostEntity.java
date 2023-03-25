@@ -9,35 +9,31 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "mt_message")
-public class MessageEntity {
-
+@Table(name = "mt_post")
+public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "message_id")
+    @Column(name = "post_id")
     private Long id;
 
-    @Column(name = "id_sender")
-    private Long idSender;
-
-    @Column(name = "id_receiver")
-    private Long idReceiver;
+    @Column(name = "id_user")
+    private Long idUser;
 
     @Column(name = "message")
     private String message;
 
-    @Column(name = "picture")
+    @Column(name = "image")
     @Lob
-    private byte[] picture;
+    private byte[] image;
+
+    @Column(name = "domain")
+    private String domain;
 
     @Column(name = "date")
     private LocalDateTime date;
-
-
 }
