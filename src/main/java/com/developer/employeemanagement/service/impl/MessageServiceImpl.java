@@ -61,7 +61,10 @@ public class MessageServiceImpl implements MessageService {
         messageEntity.setDate(date);
         messageEntity.setIdReceiver(idReceiver);
         messageEntity.setIdSender(idSender);
-        messageEntity.setPicture(picture.getBytes());
+        if(!(picture ==null)){
+            messageEntity.setPicture(picture.getBytes());
+        }
+
         messageRepository.save(messageEntity);
     }
 

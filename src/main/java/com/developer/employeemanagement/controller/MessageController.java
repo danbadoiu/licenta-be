@@ -43,7 +43,7 @@ public class MessageController {
 //        return messageService.saveMessage(messageEntity);
 //    }
     public void saveMessage(
-            MultipartFile picture, String message, String date, Long idSender, Long idReceiver
+            @RequestBody(required = false) MultipartFile picture, String message, String date, Long idSender, Long idReceiver
     ) throws IOException, ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
