@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,6 +35,9 @@ public class MarkerEntity {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name= "doctors")
+    private String doctors;
 
 
 }
