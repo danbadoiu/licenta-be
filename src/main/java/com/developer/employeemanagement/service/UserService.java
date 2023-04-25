@@ -18,7 +18,7 @@ public interface UserService {
     UserEntity saveUser(UserEntity userEntity);
     UserEntity updateUser(UserEntity userEntity);
     void saveUser(MultipartFile profilePicture, String username, String firstName, String lastName, String password
-            , String role, String email) throws IOException;
+            , String role, String email, String domain) throws IOException;
     void deleteUser(Long id);
 
     //    Using Request for Save and Update Employee

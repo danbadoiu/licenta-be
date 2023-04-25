@@ -16,7 +16,9 @@ public interface AppointmentService {
     Optional<AppointmentEntity> findById(Long id);
     AppointmentEntity saveAppointment(AppointmentEntity appointmentEntity);
     AppointmentEntity updateAppointment(AppointmentEntity appointmentEntity);
-    public void saveAppointment(Long idUser, Long idDoctor, Long idMarker, LocalDateTime date) throws IOException;
+    public void saveAppointment(Long idUser, Long idDoctor, Long idMarker, LocalDateTime date, String status) throws IOException;
+    public void updateAppointment(Long id, Long idUser, Long idDoctor, Long idMarker, LocalDateTime date, String status) throws IOException;
+
     void deleteAppointment(Long id);
 
 

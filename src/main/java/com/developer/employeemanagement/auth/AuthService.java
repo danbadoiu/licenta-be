@@ -32,7 +32,7 @@ public class AuthService {
     }
 
     public AuthResponse signup(MultipartFile profilePicture, String username, String firstName, String lastName, String password
-            , String role, String email) throws IOException {
+            , String role, String email, String domain) throws IOException {
         UserEntity user = new UserEntity();
         user.setEmail(email);
         user.setUsername(username);
@@ -41,6 +41,7 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole(role);
         user.setProfilePicture(profilePicture.getBytes());
+        user.setDomain(domain);
         UserEntity savedUser = userRepository.save(user);
         return new AuthResponse(jwtUtils.generateJwtToken(savedUser), savedUser, null);
 

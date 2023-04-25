@@ -20,9 +20,10 @@ public class AuthController {
 
     @PostMapping(value = "/signup")
     public AuthResponse saveUser(
-            MultipartFile profilePicture, String username, String firstName, String lastName, String password, String role, String email
+            MultipartFile profilePicture, String username, String firstName, String lastName, String password, String role, String email,
+            @RequestBody(required = false) String domain
     ) throws IOException {
-        return this.authService.signup(profilePicture, username, firstName, lastName, password, role, email);
+        return this.authService.signup(profilePicture, username, firstName, lastName, password, role, email, domain);
     }
 
     @PostMapping(value = "/login")

@@ -49,6 +49,9 @@ public class UserEntity implements UserDetails {
     @Column(name = "role")
     private String role;
 
+    @Column(name = "domain")
+    private String domain;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role));

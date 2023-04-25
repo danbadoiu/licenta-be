@@ -40,14 +40,32 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public void saveAppointment(Long idUser, Long idDoctor, Long idMarker, LocalDateTime date) throws IOException {
+    public void saveAppointment(Long idUser, Long idDoctor, Long idMarker, LocalDateTime date, String status) throws IOException {
         AppointmentEntity appointmentEntity = new AppointmentEntity();
         appointmentEntity.setDate(date);
         appointmentEntity.setIdDoctor(idDoctor);
         appointmentEntity.setIdMarker(idMarker);
         appointmentEntity.setIdUser(idUser);
+        appointmentEntity.setStatus(status);
         appointmentRepository.save(appointmentEntity);
     }
+    @Override
+    public void updateAppointment(Long id, Long idUser, Long idDoctor, Long idMarker, LocalDateTime date, String status) throws IOException {
+        Optional<AppointmentEntity> optionalAppointmentEntity = appointmentRepository.findById(id);
+        if (optionalAppointmentEntity.isPresent()) {
+            AppointmentEntity appointmentEntity = optionalAppointmentEntity.get();
+            appointmentEntity.setDate(date);
+            appointmentEntity.setIdDoctor(idDoctor);
+            appointmentEntity.setIdMarker(idMarker);
+            appointmentEntity.setIdUser(idUser);
+            appointmentEntity.setStatus(status);
+            appointmentRepository.save(appointmentEntity);
+        } else {
+            throw new IllegalArgumentException("Appointment with id " + id + " not found");
+        }
+    }
+
+
 
     @Override
     public void deleteAppointment(Long id) {

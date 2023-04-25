@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public void saveUser(MultipartFile profilePicture, String username, String firstName, String lastName, String password
-            , String role, String email) throws IOException {
+            , String role, String email, String domain) throws IOException {
         UserEntity user = new UserEntity();
         user.setEmail(email);
         user.setUsername(username);
@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(password);
         user.setRole(role);
         user.setProfilePicture(profilePicture.getBytes());
+        user.setDomain(domain);
         userRepository.save(user);
     }
 

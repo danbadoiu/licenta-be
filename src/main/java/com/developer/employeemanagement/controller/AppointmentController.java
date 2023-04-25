@@ -40,12 +40,21 @@ public class AppointmentController {
 //        return messageService.saveMessage(messageEntity);
 //    }
     public void saveAppointment(
-            Long idUser, Long idDoctor, Long idMarker, String date
+            Long idUser, Long idDoctor, Long idMarker, String date, String status
     ) throws IOException, ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
 
-        this.appointmentService.saveAppointment(idUser, idDoctor, idMarker, dateTime);
+        this.appointmentService.saveAppointment(idUser, idDoctor, idMarker, dateTime,status);
+    }
+    @PutMapping("/{id}")
+    public void updateAppointment(
+            @PathVariable("id") Long id, Long idUser, Long idDoctor, Long idMarker, String date, String status
+    ) throws IOException, ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+
+        this.appointmentService.updateAppointment(id,idUser, idDoctor, idMarker, dateTime,status);
     }
     @PutMapping
     public AppointmentEntity updateAppointment(@RequestBody AppointmentEntity appointmentEntity) {
