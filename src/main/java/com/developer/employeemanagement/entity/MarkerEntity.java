@@ -39,5 +39,8 @@ public class MarkerEntity {
     @Column(name= "doctors")
     private String doctors;
 
+    @Column(name= "domains")
+    private String domains;
+
 
 }
