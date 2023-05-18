@@ -1,24 +1,14 @@
 package com.developer.employeemanagement.service.impl;
 
-import com.developer.employeemanagement.dto.mapper.EmployeeMapper;
-import com.developer.employeemanagement.dto.mapper.UserMapper;
-import com.developer.employeemanagement.dto.request.EmployeeRequest;
-import com.developer.employeemanagement.dto.request.UserRequest;
-import com.developer.employeemanagement.dto.response.EmployeeResponse;
-import com.developer.employeemanagement.dto.response.UserResponse;
-import com.developer.employeemanagement.entity.EmployeeEntity;
+
 import com.developer.employeemanagement.entity.UserEntity;
 
 import com.developer.employeemanagement.repository.UserRepository;
-import com.developer.employeemanagement.service.EmployeeService;
 import com.developer.employeemanagement.service.UserService;
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,24 +62,6 @@ public class UserServiceImpl implements UserService {
 
 //    Using Request and Response with save and update employee
 
-    @Override
-    public UserResponse saveUser(UserRequest userRequest) {
-        UserEntity userEntity = UserMapper.MAPPER.fromRequestToEntity(userRequest);
-        userRepository.save(userEntity);
-        return UserMapper.MAPPER.fromEntityToResponse(userEntity);
-    }
 
-    @Override
-    public UserResponse updateUser(UserRequest userRequest, Long id) {
-
-        Optional<UserEntity> checkExistingUser = findById(id);
-        if (! checkExistingUser.isPresent())
-            throw new RuntimeException("User Id "+ id + " Not Found!");
-
-        UserEntity userEntity = UserMapper.MAPPER.fromRequestToEntity(userRequest);
-        userEntity.setId(id);
-        userRepository.save(userEntity);
-        return UserMapper.MAPPER.fromEntityToResponse(userEntity);
-    }
 
 }

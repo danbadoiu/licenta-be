@@ -21,9 +21,6 @@ public interface UserService {
             , String role, String email, String domain) throws IOException;
     void deleteUser(Long id);
 
-    //    Using Request for Save and Update Employee
-    UserResponse saveUser(UserRequest userRequest);
-    UserResponse updateUser(UserRequest userRequest, Long id);
 
 
 }

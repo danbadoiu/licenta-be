@@ -39,14 +39,8 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-    @PostMapping("/res")
-    public UserResponse saveUserResponse(@RequestBody UserRequest userRequest) {
-        return userService.saveUser(userRequest);
-    }
 
-    @PutMapping("/res/{id}")
-    public UserResponse updateUserResponse(@RequestBody UserRequest userRequest, @PathVariable("id") Long id) {
-        return userService.updateUser(userRequest, id);
-    }
+
+
 
 }
