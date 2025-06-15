@@ -1,7 +1,9 @@
 package com.developer.employeemanagement.controller;
 
 import com.developer.employeemanagement.entity.PatientFileEntity;
+import com.developer.employeemanagement.service.AppointmentService;
 import com.developer.employeemanagement.service.PatientFileService;
+import com.developer.employeemanagement.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ public class PatientFileController {
 
     private final PatientFileService patientFileService;
 
+
     // Get all patient files
     @GetMapping
     public List<PatientFileEntity> findAllPatientFiles() {
@@ -27,10 +30,18 @@ public class PatientFileController {
     }
 
     // Get a patient file by ID
-    @GetMapping("/{id}")
-    public Optional<PatientFileEntity> findPatientFileById(@PathVariable("id") Long id) {
-        return patientFileService.findById(id);
+    @GetMapping("/patient-file/{id}")
+    public ResponseEntity<?> getPatientFileById(@PathVariable Long id) {
+        Optional<PatientFileEntity> optionalFile = patientFileService.findById(id);
+
+        if (optionalFile.isPresent()) {
+            return ResponseEntity.ok(optionalFile.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Patient file with ID " + id + " not found");
+        }
     }
+
 
     @GetMapping("/{idUser}")
     public ResponseEntity<PatientFileEntity> findPatientFileByIdUser(@PathVariable("idUser") Long id) {
@@ -81,5 +92,18 @@ public class PatientFileController {
     @DeleteMapping("/{id}")
     public void deletePatientFile(@PathVariable("id") Long id) {
         patientFileService.deletePatientFile(id);
+    }
+
+    @GetMapping("/{idDoctor}")
+    public ResponseEntity<List<PatientFileEntity>> getPatientsByDoctor(
+            @PathVariable("idDoctor") Long idDoctor
+    )throws IOException {
+        List<PatientFileEntity> patients = patientFileService.getPatientsByDoctor(idDoctor);
+
+        if (patients.isEmpty()) {
+            return ResponseEntity.status(404).body(null);  // No patients found
+        }
+
+        return ResponseEntity.ok(patients);
     }
 }

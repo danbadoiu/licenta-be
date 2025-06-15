@@ -98,6 +98,11 @@ public class PatientFileServiceImpl implements PatientFileService {
         patientFileRepository.deleteById(id);
     }
 
+    @Override
+    public List<PatientFileEntity> getPatientsByDoctor(Long idDoctor) {
+        return patientFileRepository.findPatientsByDoctor(idDoctor);  // or findPatientsByDoctorNative(idDoctor);
+    }
+
 
 
 }

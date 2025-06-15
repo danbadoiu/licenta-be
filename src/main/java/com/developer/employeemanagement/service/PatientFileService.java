@@ -25,6 +25,7 @@ public interface PatientFileService {
                          String currentMedications, String emergencyContact, String date) throws IOException;
 
     void deletePatientFile(Long id);
+    List<PatientFileEntity> getPatientsByDoctor(Long idDoctor);
 
 }
 

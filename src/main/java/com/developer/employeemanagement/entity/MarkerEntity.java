@@ -43,4 +43,12 @@ public class MarkerEntity {
     private String domains;
 
 
+    public MarkerEntity(String longitude, String latitude, String name, String doctors, String domains) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.name = name;
+        this.doctors = doctors;
+        this.domains = domains;
+    }
+
 }
